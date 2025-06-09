@@ -7,14 +7,14 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def get_driver():
-    options = Options()
-    options.add_argument("--headless=new")  # Headless moderno
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1920x1080")
-    options.add_argument("--remote-debugging-port=9222")
-    return webdriver.Chrome(options=options)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920x1080")
+    chrome_options.binary_location = "/usr/bin/chromium"
+    return webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=chrome_options)
 
 def buscar_estado_ot(numero_ot: str, tipo: str = "Orden de Transporte") -> list:
     
