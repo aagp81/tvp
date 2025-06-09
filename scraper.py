@@ -43,7 +43,7 @@ def buscar_estado_ot(numero_ot: str, tipo: str = "Orden de Transporte") -> list:
         boton.click()
 
         wait = WebDriverWait(driver, 10)
-        input_ot = wait.until(EC.presence_of_element_located((By.XPATH, '//form[@id='j_id_jsp_931588303_27']//table[1]//tbody//tr')))
+        input_ot = wait.until(EC.presence_of_element_located((By.NAME , 'j_id_jsp_931588303_27')))
 
         # Extraer la primera tabla de movimientos
         filas = driver.find_elements(By.XPATH, "//form[@id='j_id_jsp_931588303_27']//table[1]//tbody//tr")
