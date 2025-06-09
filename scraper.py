@@ -4,7 +4,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
 
 def get_driver():
@@ -43,7 +42,8 @@ def buscar_estado_ot(numero_ot: str, tipo: str = "Orden de Transporte") -> list:
         boton = driver.find_element(By.NAME, "j_id_jsp_931588303_6:btnBuscar")
         boton.click()
 
-        time.sleep(1)  # Esperar que se carguen los datos
+        wait = WebDriverWait(driver, 10)
+        input_ot = wait.until(EC.presence_of_element_located((By.NAME, '//form[@id='j_id_jsp_931588303_27']//table[1]//tbody//tr')))
 
         # Extraer la primera tabla de movimientos
         filas = driver.find_elements(By.XPATH, "//form[@id='j_id_jsp_931588303_27']//table[1]//tbody//tr")
